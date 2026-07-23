@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TerrainType" format=3 uid="uid://da0dmw8v4ch5w"]
+
+[ext_resource type="Script" uid="uid://bit8dpymx6xgw" path="res://scripts/TerrainType.cs" id="1_m02bm"]
+
+[resource]
+script = ExtResource("1_m02bm")
+Id = &"slab"
+MoveCost = 1
+metadata/_custom_type_script = "uid://bit8dpymx6xgw"
