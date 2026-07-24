@@ -9,7 +9,6 @@ public struct MovementRangeResult
     public Dictionary<Vector2I, Vector2I> CameFrom;
 }
 
-public record PathStep(Vector2I Pos, int Cost);
 
 public class PathAlgorithms
 {
@@ -44,13 +43,14 @@ public class PathAlgorithms
 
                 if (newCost > moveBudget)
                     continue;
-                    
+
                 bool neverVisited = !costs.TryGetValue(neighbor, out int existingCost);
                 bool foundCheaperPath = newCost < existingCost;
 
                 if (neverVisited || foundCheaperPath)
                 {
                     costs[neighbor] = newCost;
+                    cameFrom[neighbor] = currentPos;
                     frontier.Enqueue(neighbor, newCost);
                 }
             }
@@ -59,21 +59,21 @@ public class PathAlgorithms
         return new MovementRangeResult { Costs = costs, CameFrom = cameFrom };
     }
 
-    static public List<List<PathStep>> ReconstructAllOptimalPaths(
+    static public List<List<Vector2I>> ReconstructAllOptimalPaths(
         Vector2I start,
         Vector2I target,
         Dictionary<Vector2I, int> costs,
         Dictionary<Vector2I, CellData> grid
     )
     {
-        var results = new List<List<PathStep>>();
+        var results = new List<List<Vector2I>>();
 
         if (!costs.ContainsKey(target))
             return results;
 
-        void Backtrack(Vector2I current, Stack<PathStep> path)
+        void Backtrack(Vector2I current, Stack<Vector2I> path)
         {
-            path.Push(new PathStep(current, costs[current]));
+            path.Push(current);
 
             if (current == start)
             {
@@ -93,7 +93,7 @@ public class PathAlgorithms
             path.Pop();
         }
 
-        Backtrack(target, new Stack<PathStep>());
+        Backtrack(target, new Stack<Vector2I>());
         return results;
     }
 }

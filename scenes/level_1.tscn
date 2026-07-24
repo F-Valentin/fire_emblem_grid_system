@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bf6dlnpm18o5o" path="res://assets/Texture/TX Tileset Grass.png" id="1_014kd"]
 [ext_resource type="Texture2D" uid="uid://bk12lyccuyie3" path="res://assets/Texture/TX Props.png" id="2_rus8k"]
 [ext_resource type="Texture2D" uid="uid://bv83v0utbyj5l" path="res://assets/Texture/TX Plant.png" id="3_5xbjy"]
+[ext_resource type="Script" uid="uid://ua5103vs5qft" path="res://scripts/Player.cs" id="5_4nkto"]
+[ext_resource type="Texture2D" uid="uid://byk5a1ntrmlsa" path="res://item535.png" id="5_fcfvj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bswci"]
 texture = ExtResource("1_014kd")
@@ -1083,9 +1085,8 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_4nkto")
 sources/1 = SubResource("TileSetAtlasSource_fcfvj")
 
-[node name="Level1" type="Node2D" unique_id=729398998 node_paths=PackedStringArray("_tileMapLayers")]
+[node name="Level1" type="Node2D" unique_id=729398998]
 script = ExtResource("1_5xbjy")
-_tileMapLayers = NodePath("TileMapLayers")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1993165797]
 
@@ -1096,3 +1097,8 @@ tile_set = SubResource("TileSet_gkh53")
 [node name="Decor" type="TileMapLayer" parent="TileMapLayers" unique_id=1437362019]
 tile_map_data = PackedByteArray("AAATAAQAAQAEAAAAAAAUAAQAAQAFAAAAAAAGAP7/AQAEAAAAAAAHAP7/AQAFAAAAAAADAAsAAQAGAAwAAAADAAwAAQAGAA0AAAAEAAsAAQAHAAwAAAAEAAwAAQAHAA0AAAAJAAwAAQAGAAwAAAAJAA0AAQAGAA0AAAAKAAwAAQAHAAwAAAAKAA0AAQAHAA0AAAARAAEAAQAGAAwAAAARAAIAAQAGAA0AAAASAAEAAQAHAAwAAAASAAIAAQAHAA0AAAAPAAEAAAADABsAAAAPAAIAAAADABwAAAAPAAMAAAADAB0AAAAOAAAAAAACABoAAAAOAAEAAAACABsAAAAOAAIAAAACABwAAAAOAAMAAAACAB0AAAANAAAAAAABABoAAAANAAEAAAABABsAAAANAAIAAAABABwAAAANAAMAAAABAB0AAAAMAAEAAAAAABsAAAAMAAIAAAAAABwAAAAJAAoAAAADABsAAAAJAAsAAAADABwAAAAIAAkAAAACABoAAAAIAAoAAAACABsAAAAIAAsAAAACABwAAAAIAAwAAAACAB0AAAAHAAkAAAABABoAAAAHAAoAAAABABsAAAAHAAsAAAABABwAAAAHAAwAAAABAB0AAAAGAAoAAAAAABsAAAAGAAsAAAAAABwAAAA=")
 tile_set = SubResource("TileSet_014kd")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=2057248567 node_paths=PackedStringArray("_tileMapLayers")]
+texture = ExtResource("5_fcfvj")
+script = ExtResource("5_4nkto")
+_tileMapLayers = NodePath("../TileMapLayers")

@@ -6,5 +6,4 @@
 script = ExtResource("1_ni8i7")
 Id = &"grass"
 MoveCost = 1
-IsAccessible = false
 metadata/_custom_type_script = "uid://bit8dpymx6xgw"
