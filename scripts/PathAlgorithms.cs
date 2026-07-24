@@ -34,9 +34,6 @@ public class PathAlgorithms
         {
             frontier.TryDequeue(out Vector2I currentPos, out int currentCost);
 
-            // Stale entry: a cheaper route to currentPos was already processed
-            if (costs.TryGetValue(currentPos, out int knownCost) && currentCost > knownCost)
-                continue;
 
             foreach (Vector2I neighbor in GridBuilder.GetNeighbors(currentPos))
             {
@@ -47,12 +44,13 @@ public class PathAlgorithms
 
                 if (newCost > moveBudget)
                     continue;
+                    
+                bool neverVisited = !costs.TryGetValue(neighbor, out int existingCost);
+                bool foundCheaperPath = newCost < existingCost;
 
-                // Update if we haven't visited this neighbor yet, or found a cheaper path
-                if (!costs.TryGetValue(neighbor, out int existingCost) || newCost < existingCost)
+                if (neverVisited || foundCheaperPath)
                 {
                     costs[neighbor] = newCost;
-                    cameFrom[neighbor] = currentPos;
                     frontier.Enqueue(neighbor, newCost);
                 }
             }
