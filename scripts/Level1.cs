@@ -14,6 +14,43 @@ public partial class Level1 : Node2D
 
         Dictionary<Vector2I, CellData> grid = GridBuilder.BuildGridFromLayers(layers);
 
-        GridBuilder.PrintGrid(grid);
+        // GridBuilder.PrintGrid(grid);
+        var s = new Vector2I(2, 13);
+        var res = PathAlgorithms.DijkstraMovementRange(grid, s, 10);
+
+        var layer = layers[0];
+
+        foreach (var key in res.CameFrom.Keys)
+        {
+            var rect = new ColorRect
+            {
+                Size = new Vector2(16, 16),
+                Color = Colors.White
+            };
+
+            AddChild(rect);
+
+            rect.Position = key * layer.TileSet.TileSize;
+        }
+
+        var t = new Vector2I(5, 10);
+        var paths = PathAlgorithms.ReconstructAllOptimalPaths(s, t, res.Costs, grid);
+
+
+        foreach (var path in paths)
+        {
+            foreach (PathStep step in path)
+            {
+                var rect = new ColorRect
+                {
+                    Size = new Vector2(16, 16),
+                    Color = Colors.Red
+                };
+
+                AddChild(rect);
+
+                rect.Position = step.Pos * layer.TileSet.TileSize;
+            }
+        }
     }
 }

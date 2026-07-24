@@ -6,4 +6,5 @@
 script = ExtResource("1_lpikq")
 Id = &"bush"
 MoveCost = 2
+IsAccessible = false
 metadata/_custom_type_script = "uid://bit8dpymx6xgw"

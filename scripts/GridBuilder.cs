@@ -91,4 +91,20 @@ public class GridBuilder
             GD.Print(row);
         }
     }
+    
+    static public Vector2I[] GetNeighbors(Vector2I position)
+    {
+        var left = new Vector2I(-1, 0) + position;
+        var right = new Vector2I(1, 0) + position;
+        var up = new Vector2I(0, 1) + position;
+        var down = new Vector2I(0, -1) + position;
+
+        return [
+            left,
+            right,
+            up,
+            down
+        ];
+    }
+
 }
